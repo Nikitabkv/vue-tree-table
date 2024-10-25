@@ -11,6 +11,26 @@ const item = defineProps<{
 }>()
 const emit = defineEmits(['update-selected-group-id'])
 
+const calcChildCount = () => {
+  let result = 0;
+
+  const flatten = (item: any) => {
+    result++;
+
+    if (item.children) {
+      item.children.forEach((child: any) => flatten(child));
+    }
+  };
+
+  if (item.children) {
+    item.children.forEach((item: any) => flatten(item));
+  }
+
+  return result;
+};
+
+const childCount = calcChildCount();
+
 const opened = ref(false)
 
 const toggle = () => {
@@ -29,7 +49,7 @@ const toggle = () => {
     <div @click="toggle" :style="{paddingLeft: item.paddingLeft + 'px', cursor: 'pointer'}">
       <span v-if="item.children">{{ item.children && opened ? '⤴' : '↴' }}</span>
       <span v-else> - </span>
-      {{ item.title }} {{ item.children ? `(${item.children.length})` : '' }}
+      {{ item.title }} {{ item.children ? `(${childCount})` : '' }}
       <span class="circle" v-if="item.id === item.selectedGroupId">○</span>
     </div>
     <div v-if="opened">
