@@ -59,15 +59,15 @@
       "rows": [
         {
           "id": 1,
-          "lastName": "Иванов",
+          "lastName": "Ивановtest",
           "firstName": "Иван",
-          "days": 10
+          "days": 102
         },
         {
           "id": 2,
-          "lastName": "Петров",
+          "lastName": "Петров2",
           "firstName": "Петр",
-          "days": 15
+          "days": 151
         },
         {
           "id": 3,
@@ -92,6 +92,12 @@
           "lastName": "Семенов",
           "firstName": "Семен",
           "days": 39
+        },
+        {
+          "id": 1729866163560,
+          "firstName": "Тестовый",
+          "lastName": "Тестовый",
+          "days": 6
         }
       ]
     },
@@ -206,7 +212,7 @@
           "id": 16,
           "lastName": "Николаев",
           "firstName": "Николай",
-          "days": 100
+          "days": 20
         },
         {
           "id": "2024-10-24T22:21:56.367Z",
@@ -247,7 +253,7 @@
       "rows": [
         {
           "id": 16,
-          "lastName": "Николаев",
+          "lastName": "Проверка",
           "firstName": "Николай",
           "days": 100
         }

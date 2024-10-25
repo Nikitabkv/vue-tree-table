@@ -2,8 +2,9 @@
 import {onMounted, Ref, ref, toRef, watch} from 'vue'
 import axios from "axios"
 import "ag-grid-community/styles/ag-grid.css"
-import "ag-grid-community/styles/ag-theme-material.css"
+import "ag-grid-community/styles/ag-theme-quartz.css"
 import { AgGridVue } from "ag-grid-vue3"
+import {useToast} from "../../../@/components/ui/toast"
 
 const cols = ref([
   { headerName: "Фамилия", field: "lastName", sortable: true},
@@ -32,7 +33,7 @@ const setTableData = (data: ITableData[] | null) => {
   tableData.value = data
 }
 
-console.log(tableData)
+const { toast } = useToast()
 
 onMounted(() => {
   const groupIdRef = toRef(props, 'groupId')
@@ -40,9 +41,14 @@ onMounted(() => {
     setTableData(null)
     getData(newGroupId)
         .then(data => setTableData(data.rows))
-        .catch(
-            (error) => alert(error.message)
-        )
+        .catch((error) => {
+          toast({
+            duration: 5000,
+            variant: "destructive",
+            title: `Ошибка: ${error.status}`,
+            description: error.message,
+          });
+        })
   }, {immediate: true})
 })
 </script>
@@ -63,7 +69,7 @@ onMounted(() => {
         :rowData="tableData"
         :columnDefs="cols"
         style="width: 100%; height: 500px;"
-        class="ag-theme-material-dark"
+        class="ag-theme-quartz"
     />
 <!--    <table class="table">-->
 <!--      <tbody>-->

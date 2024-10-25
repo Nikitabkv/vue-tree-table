@@ -2,6 +2,7 @@
 import axios from "axios"
 import {onMounted, ref} from "vue"
 import {RouteParamValue, useRoute} from "vue-router"
+import {useToast} from "../../../@/components/ui/toast"
 
 interface ITableData {
   id: number
@@ -16,6 +17,7 @@ async function getData(groupId: string | RouteParamValue[]) {
 }
 
 const route = useRoute()
+const { toast } = useToast()
 
 const errorMessage = ref<string | null>(null)
 const tableData = ref<ITableData[] | []>([])
@@ -28,8 +30,21 @@ const updateTableData = () => {
     id: route.params.id,
     rows: tableData.value
   })
-      .then(() => alert('Таблица обновлена успешно'))
-      .catch((error) => errorMessage.value = error.message)
+      .then(() => {
+        toast({
+          title: "Успех",
+          description: "Данные успешно обновлены",
+        })
+      })
+      .catch((error) => {
+        errorMessage.value = error.message
+        toast({
+          duration: 5000,
+          variant: "destructive",
+          title: `Ошибка: ${error.status}`,
+          description: error.message,
+        })
+      })
 }
 
 const addNewPerson = () => {
@@ -46,17 +61,25 @@ const addNewPerson = () => {
 onMounted(() => {
   getData(route.params.id)
       .then(data => setTableData(data.rows))
-      .catch((error) => errorMessage.value = error.message)
+      .catch((error) => {
+        errorMessage.value = error.message
+        toast({
+          duration: 5000,
+          variant: "destructive",
+          title: `Ошибка: ${error.status}`,
+          description: error.message,
+        })
+      })
 })
 
 </script>
 
 <template>
- <div>
-   <RouterLink to="/">
-     На главную
-   </RouterLink>
- </div>
+  <div>
+    <RouterLink to="/">
+      На главную
+    </RouterLink>
+  </div>
 
   <div v-if="tableData.length === 0 && !errorMessage">Загрузка...</div>
   <div v-else-if="errorMessage">
