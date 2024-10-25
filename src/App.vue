@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {Toaster} from "../@/components/ui/toast"
+import {Toaster} from "../src/components/ui/toast"
 </script>
 
 <template>

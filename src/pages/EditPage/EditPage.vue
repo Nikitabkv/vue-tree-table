@@ -2,7 +2,7 @@
 import axios from "axios"
 import {onMounted, ref} from "vue"
 import {RouteParamValue, useRoute} from "vue-router"
-import {useToast} from "../../../@/components/ui/toast"
+import {useToast} from "../../components/ui/toast"
 
 interface ITableData {
   id: number
@@ -20,7 +20,7 @@ const route = useRoute()
 const { toast } = useToast()
 
 const errorMessage = ref<string | null>(null)
-const tableData = ref<ITableData[] | []>([])
+const tableData = ref<any>(null)
 const setTableData = (data: ITableData[]) => {
   tableData.value = data
 }
@@ -81,12 +81,13 @@ onMounted(() => {
     </RouterLink>
   </div>
 
-  <div v-if="tableData.length === 0 && !errorMessage">Загрузка...</div>
+  <div v-if="tableData === null && !errorMessage">Загрузка...</div>
   <div v-else-if="errorMessage">
     {{errorMessage}}
   </div>
   <template v-else>
     <div class="flexCol">
+      <div v-if="tableData?.length === 0 && !errorMessage">Данных нет, нужно добавить нового сотрудника</div>
       <button @click="addNewPerson">
         Добавить нового сотрудника
       </button>
@@ -103,6 +104,9 @@ onMounted(() => {
           Дней отпуска:
           <input type="number" v-model="row.days">
         </label>
+        <button @click="setTableData(tableData.filter((item: any) => item.id !== row.id))">
+          Удалить
+        </button>
       </div>
       <button @click="updateTableData">
         Сохранить

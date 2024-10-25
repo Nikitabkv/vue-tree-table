@@ -60,7 +60,7 @@ button:focus-visible {
   min-width: 100%;
 }
 
-input {
+input, select, option {
   background-color: white;
   border-radius: 4px;
   padding: 4px 8px !important;

@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import axios from "axios"
 import {onMounted, ref} from 'vue'
 import TreeItem from "../../components/TreeItem/TreeItem.vue"
 import Table from "../../components/Table/Table.vue"
-import axios from "axios"
+import Modal from "../../components/Modal/Modal.vue"
+import {useToast} from "../../components/ui/toast"
 
 interface ITreeData {
   id: string
@@ -14,6 +16,8 @@ async function getData() {
   const response = await axios.get('http://localhost:3000/groups')
   return response.data
 }
+
+const { toast } = useToast()
 
 const selectedGroupId = ref<any>(null)
 const updateSelectedGroupId = (id: string) => {
@@ -28,10 +32,25 @@ const setTreeData = (data: any) => {
 onMounted(() => {
   getData()
       .then(data => setTreeData(data))
-      .catch(
-          (error) => alert(error.message)
-      )
+      .catch((error) => {
+        toast({
+          duration: 5000,
+          variant: "destructive",
+          title: `Ошибка: ${error.status}`,
+          description: error.message,
+        })
+      })
 })
+
+const addNewGroupModalIsOpen = ref(false)
+
+const toggleAddNewGroupModal = () => {
+  addNewGroupModalIsOpen.value = !addNewGroupModalIsOpen.value
+}
+const updateTreeData = (data: any) => {
+  setTreeData(data)
+}
+
 </script>
 
 <template>
@@ -47,6 +66,16 @@ onMounted(() => {
           @update-selected-group-id="updateSelectedGroupId"
       />
       <span v-else>Загрузка...</span>
+      <button @click="toggleAddNewGroupModal">
+        <span>Добавить группу</span>
+      </button>
+      <Teleport v-if="addNewGroupModalIsOpen" to="body">
+        <Modal
+            :treeData="treeData || []"
+            @updateTreeData="updateTreeData"
+            @close="toggleAddNewGroupModal"
+        />
+      </Teleport>
     </div>
     <div class="tableWrapper">
       <span v-if="selectedGroupId === null">Группа или проект не выбраны</span>

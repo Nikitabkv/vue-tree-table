@@ -4,7 +4,7 @@ import axios from "axios"
 import "ag-grid-community/styles/ag-grid.css"
 import "ag-grid-community/styles/ag-theme-quartz.css"
 import { AgGridVue } from "ag-grid-vue3"
-import {useToast} from "../../../@/components/ui/toast"
+import {useToast} from "../ui/toast"
 
 const cols = ref([
   { headerName: "Фамилия", field: "lastName", sortable: true},
