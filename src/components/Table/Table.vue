@@ -50,7 +50,11 @@ onMounted(() => {
 <template>
   <div v-if="!tableData">Загрузка...</div>
   <div v-else class="tableWrapper">
-    <div> Id группы: {{ props.groupId }}, сотрудников в таблице: {{ tableData.length }}, отпусков у сотрудников: {{ tableData.reduce((sum, row) => sum + row.days, 0) }} </div>
+    <div>
+      Id группы: {{ props.groupId }},
+      сотрудников в таблице: {{ tableData.length }},
+      отпусков у сотрудников: {{ tableData.reduce((sum, row) => sum + parseInt(row.days), 0) }}
+    </div>
     <RouterLink :to="`/edit/${props.groupId}`">
       Редактировать таблицу
     </RouterLink>
