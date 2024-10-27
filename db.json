@@ -1,254 +1,174 @@
 {
-  "groups": [
+  "projects": [
     {
       "id": "1",
-      "title": "Группа проектов 1",
-      "children": [
-        {
-          "id": "2",
-          "title": "Проект 1.1"
-        },
-        {
-          "id": "3",
-          "title": "Проект 1.2",
-          "children": [
-            {
-              "id": "4",
-              "title": "Проект 1.2.1"
-            },
-            {
-              "id": "5",
-              "title": "Проект 1.2.2"
-            }
-          ]
-        }
+      "title": "Проект 1",
+      "parentId": null,
+      "employeesIds": [
+        "2",
+        "e6c0"
       ]
     },
     {
-      "id": "6",
-      "title": "Группа проектов 2",
-      "children": [
-        {
-          "id": "7",
-          "title": "Проект 2.1",
-          "children": [
-            {
-              "id": "8",
-              "title": "Проект 2.1.1",
-              "children": [
-                {
-                  "id": "9",
-                  "title": "Проект 2.1.1.1",
-                  "children": [
-                    {
-                      "id": "10",
-                      "title": "Проект 2.1.1.1.1"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ],
-  "groupsData": [
-    {
-      "id": "1",
-      "rows": [
-        {
-          "id": 1,
-          "lastName": "Ивановtest",
-          "firstName": "Иван",
-          "days": 102
-        },
-        {
-          "id": 3,
-          "lastName": "Сидоров",
-          "firstName": "Сидор",
-          "days": 20
-        },
-        {
-          "id": 4,
-          "lastName": "Кузнецов",
-          "firstName": "Кузья",
-          "days": 25
-        },
-        {
-          "id": 5,
-          "lastName": "Васильев",
-          "firstName": "Василий",
-          "days": 30
-        },
-        {
-          "id": 6,
-          "lastName": "Семенов",
-          "firstName": "Семен",
-          "days": 39
-        },
-        {
-          "id": 1729866163560,
-          "firstName": "Тестовый",
-          "lastName": "Тестовый",
-          "days": 6
-        }
-      ]
-    },
-    {
-      "0": {
-        "id": 7,
-        "lastName": "Волков",
-        "firstName": "Волк",
-        "days": 40
-      },
-      "1": {
-        "id": 8,
-        "lastName": "Сергеев",
-        "firstName": "Сергей",
-        "days": 45
-      },
-      "2": {
-        "id": 9,
-        "lastName": "Павлов",
-        "firstName": "Павел",
-        "days": 50
-      },
-      "3": {
-        "id": 10,
-        "lastName": "Алексеев",
-        "firstName": "Алексей",
-        "days": 55
-      },
-      "4": {
-        "id": 11,
-        "lastName": "Самсонов",
-        "firstName": "Самсон",
-        "days": 60
-      },
       "id": "2",
-      "rows": [
-        {
-          "id": 7,
-          "lastName": "Волков",
-          "firstName": "Волк",
-          "days": 10
-        },
-        {
-          "id": 8,
-          "lastName": "Сергеев",
-          "firstName": "Сергей",
-          "days": 5
-        },
-        {
-          "id": 9,
-          "lastName": "Павлов",
-          "firstName": "Павел",
-          "days": 15
-        },
-        {
-          "id": 10,
-          "lastName": "Алексеев",
-          "firstName": "Алексей",
-          "days": 10
-        },
-        {
-          "id": 11,
-          "lastName": "Самсонов",
-          "firstName": "Самсон",
-          "days": 5
-        }
+      "title": "Проект 2",
+      "parentId": null,
+      "employeesIds": [
+        "2",
+        "4"
       ]
     },
     {
       "id": "3",
-      "rows": [
-        {
-          "id": 12,
-          "lastName": "Воробьёв",
-          "firstName": "Воробей",
-          "days": 65
-        },
-        {
-          "id": 13,
-          "lastName": "Макаров",
-          "firstName": "Макар",
-          "days": 70
-        }
+      "title": "Проект 3",
+      "parentId": null,
+      "employeesIds": [
+        "4",
+        "1"
       ]
     },
     {
       "id": "4",
-      "rows": [
-        {
-          "id": 14,
-          "lastName": "Григорьев",
-          "firstName": "Григорий",
-          "days": 75
-        }
+      "title": "Проект 4",
+      "parentId": "1",
+      "employeesIds": [
+        "4"
       ]
     },
     {
       "id": "5",
-      "rows": [
-        {
-          "id": 15,
-          "lastName": "Кузьмин",
-          "firstName": "Кузьма",
-          "days": 20
-        }
+      "title": "Проект 5",
+      "parentId": "2",
+      "employeesIds": [
+        "1",
+        "2",
+        "4"
       ]
     },
     {
       "id": "6",
-      "rows": [
-        {
-          "id": 16,
-          "lastName": "Николаев",
-          "firstName": "Николай",
-          "days": 20
-        },
-        {
-          "id": "2024-10-24T22:21:56.367Z",
-          "firsName": "",
-          "lastName": "Человек",
-          "firstName": "Новый",
-          "days": 120
-        },
-        {
-          "id": "2024-10-24T22:22:46.882Z",
-          "firsName": "",
-          "lastName": "Человек",
-          "firstName": "Новый2",
-          "days": 5
-        },
-        {
-          "id": "2024-10-24T22:22:47.477Z",
-          "firsName": "",
-          "lastName": "Человек",
-          "firstName": "Новый3",
-          "days": 10
-        }
+      "title": "Проект 6",
+      "parentId": "3",
+      "employeesIds": [
+        "2",
+        "1"
       ]
     },
     {
       "id": "7",
-      "rows": [
-        {
-          "id": 16,
-          "lastName": "Николаев",
-          "firstName": "Николай",
-          "days": 100
-        }
+      "title": "Проект 7",
+      "parentId": "5",
+      "employeesIds": [
+        "2",
+        "1"
       ]
     },
     {
-      "id": "8",
-      "rows": []
+      "id": "d1b8",
+      "title": "Проект 10",
+      "parentId": null,
+      "employeesIds": [
+        "2",
+        "4"
+      ]
     },
     {
-      "id": "9",
-      "rows": []
+      "id": "698a",
+      "title": "Проект 12",
+      "parentId": "7",
+      "employeesIds": []
+    },
+    {
+      "id": "d793",
+      "title": "Проект 13",
+      "parentId": "7",
+      "employeesIds": []
+    },
+    {
+      "id": "6cf1",
+      "title": "Проект 14",
+      "parentId": "2",
+      "employeesIds": []
+    },
+    {
+      "id": "b594",
+      "title": "Проект 15",
+      "parentId": "6cf1",
+      "employeesIds": [
+        "3",
+        "2"
+      ]
+    },
+    {
+      "id": "6dab",
+      "title": "Проект 31",
+      "parentId": "d793",
+      "employeesIds": [
+        "2",
+        "1"
+      ]
+    }
+  ],
+  "employees": [
+    {
+      "id": "1",
+      "firstName": "Иван",
+      "lastName": "Иванов",
+      "middleName": "Иванович",
+      "days": 21,
+      "inProjectsIds": [
+        "5",
+        "7",
+        "3",
+        "948d",
+        "6",
+        "6dab"
+      ]
+    },
+    {
+      "id": "2",
+      "firstName": "Петр",
+      "lastName": "Петров",
+      "middleName": "Петрович",
+      "days": 10,
+      "inProjectsIds": [
+        "5",
+        "7",
+        "2",
+        "6",
+        "948d",
+        "7968",
+        "1",
+        "b594",
+        "d1b8",
+        "6dab"
+      ]
+    },
+    {
+      "id": "4",
+      "firstName": "Александр",
+      "lastName": "Александров",
+      "middleName": "Александрович",
+      "days": 28,
+      "inProjectsIds": [
+        "5",
+        "3",
+        "2",
+        "948d",
+        "50f5",
+        "d1b8",
+        "4"
+      ]
+    },
+    {
+      "id": "e6c0",
+      "firstName": "Тест",
+      "middleName": "Тестович",
+      "lastName": "Тестов",
+      "days": 35,
+      "inProjectsIds": [
+        "1"
+      ]
     }
   ]
 }
