@@ -1,5 +1,5 @@
 import { http } from '@/shared/api'
-import {IEmployee, IProject} from "../model/types"
+import {IEmployee, IEmployeeWithoutId, IProject, IProjectWithoutId} from "../model/types"
 
 export const fetchProjects = async () => {
   return (await http.get(`/projects`)).data
@@ -17,7 +17,7 @@ export const updateEmployee = async (payload: IEmployee) => {
   return (await http.patch(`/employees/${payload.id}`, payload)).data
 }
 
-export const addEmployee = async (payload: IEmployee) => {
+export const addEmployee = async (payload: IEmployeeWithoutId) => {
   return (await http.post(`/employees`, payload)).data
 }
 
@@ -25,7 +25,7 @@ export const deleteEmployee = async (payload: IEmployee) => {
   return (await http.delete(`/employees/${payload.id}`)).data
 }
 
-export const addProject = async (payload: IProject) => {
+export const addProject = async (payload: IProjectWithoutId) => {
   return (await http.post(`/projects`, payload)).data
 }
 

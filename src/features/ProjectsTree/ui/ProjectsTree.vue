@@ -12,7 +12,6 @@ const projectModel = useProjectModel()
       <TreeItem
           v-for="item in projectModel.treeModel"
           v-bind="item"
-          :padding-left="0"
       />
   </div>
 </template>

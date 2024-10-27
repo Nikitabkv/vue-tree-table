@@ -12,6 +12,8 @@ export interface IProject {
   "employeesIds": string[]
 }
 
+export type IProjectWithoutId = Omit<Partial<IProject>, 'id'>;
+
 export interface ITreeItem {
   id: string
   title: string
@@ -27,3 +29,5 @@ export interface IEmployee {
   "inProjectsIds": string[],
   "days": number
 }
+
+export type IEmployeeWithoutId = Omit<Partial<IEmployee>, 'id'>;

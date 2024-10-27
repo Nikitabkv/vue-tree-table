@@ -7,12 +7,13 @@ interface ITreeItem {
   title: string
   "employeesIds": string[]
   children?: ITreeItem[]
-  paddingLeft: number
+  paddingLeft?: number
 }
 
 const {setSelectedProjectItem} = useProjectModel()
 
 const item = defineProps<ITreeItem>()
+console.log(item)
 const isOpen = ref(false)
 
 const itemClickHandler = () => {
@@ -26,7 +27,7 @@ const itemClickHandler = () => {
   <div
       class="tree-item"
       @click="itemClickHandler"
-      :style="{paddingLeft: paddingLeft + 'px'}"
+      :style="{paddingLeft: item.paddingLeft + 'px'}"
   >
     <span>
       - {{ item.title }}
@@ -39,7 +40,7 @@ const itemClickHandler = () => {
     v-if="item.children && isOpen"
     v-for="child in item.children"
     v-bind="child"
-    :padding-left="paddingLeft + 20"
+    :padding-left="item.paddingLeft ? item.paddingLeft + 20 : 20"
   />
 </template>
 

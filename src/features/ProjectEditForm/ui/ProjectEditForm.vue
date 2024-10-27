@@ -2,26 +2,28 @@
 import {ref} from "vue"
 import {useRoute} from "vue-router"
 import {useProjectModel} from "@/entities/Projects"
-import {IEmployee} from "@/entities/Projects/model/types.d.ts"
+import {IEmployee} from "@/entities/Projects/model/types"
 import {router} from "@/app/providers"
 
 const route = useRoute()
 const projectModel = useProjectModel()
 const selectedEmployeeId = ref(null)
 
+const projectId = route.params.id as string
+
 const saveEmployeeButtonHandler = (employee: IEmployee) => {
   projectModel.updateEmployee(employee)
 }
 const removeEmployeeButtonHandler = (employeeId: string) => {
   projectModel.updateProjectEmployees({
-    projectId: route.params.id,
+    projectId: projectId,
     employeeId: employeeId,
     type: "remove"
   })
 }
 const addEmployeeButtonHandler = (employeeId: string) => {
   projectModel.updateProjectEmployees({
-    projectId: route.params.id,
+    projectId: projectId,
     employeeId: employeeId,
     type: "add"
   })
@@ -30,7 +32,7 @@ const addEmployeeButtonHandler = (employeeId: string) => {
 
 const deleteProjectButtonHandler = () => {
   if (!confirm('Удалить проект?')) return
-  projectModel.deleteProject(route.params.id)
+  projectModel.deleteProject(projectId)
   router.push('/')
 }
 
@@ -38,7 +40,7 @@ const deleteProjectButtonHandler = () => {
 
 <template>
   <div class="flexCol">
-    <div v-for="employee in projectModel.getEmployeesByProjectId(route.params.id)" class="flexRow">
+    <div v-for="employee in projectModel.getEmployeesByProjectId(projectId)" class="flexRow">
       <label>
         Фамилия:
         <input type="text" v-model="employee.lastName" >
@@ -62,7 +64,9 @@ const deleteProjectButtonHandler = () => {
     <div>
       Добавить сотрудника
       <select v-model="selectedEmployeeId">
-        <option v-for="employee in projectModel.employees.filter((emp: IEmployee) => !projectModel.getEmployeesByProjectId(route.params.id).includes(emp))" :value="employee.id">
+        <option
+            v-for="employee in projectModel.employees.filter((emp: IEmployee) => !projectModel.getEmployeesByProjectId(projectId).includes(emp))"
+            :value="employee.id">
           {{ employee.lastName }} {{ employee.firstName }}
         </option>
       </select>

@@ -1,4 +1,4 @@
-import {ITreeItem} from "@/src/entities/ProjectsTree/model/types"
+import {ITreeItem} from "@/entities/Projects/model/types"
 import {IProject} from "../model/types"
 
 export const getChildrenCount = (item: ITreeItem): number => {

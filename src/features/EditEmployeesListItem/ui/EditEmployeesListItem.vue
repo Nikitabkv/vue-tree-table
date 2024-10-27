@@ -7,7 +7,7 @@ const {employee} = defineProps(["employee"])
 </script>
 
 <template>
-  <form class="flex gap-2">
+  <div class="flex gap-2">
     <label>
       Фамилия:
       <input type="text" v-model="employee.lastName" minlength="2" :class="{ 'border-red-500': employee.lastName.length < 2 }">
@@ -28,7 +28,6 @@ const {employee} = defineProps(["employee"])
       <span class="text-red-500" v-if="employee.days < 0">Не может быть меньше 0</span>
     </label>
     <button
-        type="submit"
         class="bg-green-500 font-medium"
         @click="updateEmployee(employee)"
         :disabled="employee.firstName == '' || employee.lastName == '' || employee.days < 0"
@@ -36,7 +35,7 @@ const {employee} = defineProps(["employee"])
       Сохранить
     </button>
     <button class="bg-red-500 font-medium" @click="deleteEmployee(employee)">Удалить</button>
-  </form>
+  </div>
 </template>
 
 <style scoped>

@@ -2,12 +2,25 @@ import { defineStore } from 'pinia'
 import {ProjectsApi} from '../index'
 import {
   IProjectsModel,
-  IProject, IEmployee
+  IProject, IEmployee, ITreeItem, IProjectWithoutId, IEmployeeWithoutId
 } from './types'
 import {buildTreeModel} from "../lib"
 import {useToast} from "../../../shared/ui/toast"
 
 const {toast} = useToast()
+const toasts = {
+  success: () => toast({
+    title: 'Успех',
+    duration: 5000,
+    variant: 'success'
+  }),
+  error: (error: string) => toast({
+    title: 'Произошла ошибка',
+    description: error,
+    duration: 5000,
+    variant: 'destructive'
+  })
+}
 
 export const useProjectModel = defineStore({
   id: 'projects',
@@ -40,12 +53,7 @@ export const useProjectModel = defineStore({
           this.getQueryProjects(items)
         }
       } catch (e: any) {
-        toast({
-          title: 'Произошла ошибка',
-          description: e.message,
-          duration: 5000,
-          variant: 'destructive'
-        })
+        toasts.error(e.message)
       }
     },
 
@@ -56,12 +64,7 @@ export const useProjectModel = defineStore({
           this.getQueryEmployees(items)
         }
       } catch (e: any) {
-        toast({
-          title: 'Произошла ошибка',
-          description: e.message,
-          duration: 5000,
-          variant: 'destructive'
-        })
+        toasts.error(e.message)
       }
     },
 
@@ -102,15 +105,11 @@ export const useProjectModel = defineStore({
           if (projectItem && employeeItem) {
             this.updateQueryProject(projectItem)
             this.updateQueryEmployee(employeeItem)
+            toasts.success()
           }
         }
       } catch (e: any) {
-        toast({
-          title: 'Произошла ошибка',
-          description: e.message,
-          duration: 5000,
-          variant: 'destructive'
-        })
+        toasts.error(e.message)
       }
     },
 
@@ -119,14 +118,10 @@ export const useProjectModel = defineStore({
         const employee = await ProjectsApi.updateEmployee(payload)
         if (employee) {
           this.updateQueryEmployee(employee)
+          toasts.success()
         }
       } catch (e: any) {
-        toast({
-          title: 'Произошла ошибка',
-          description: e.message,
-          duration: 5000,
-          variant: 'destructive'
-        })
+        toasts.error(e.message)
       }
     },
 
@@ -147,46 +142,34 @@ export const useProjectModel = defineStore({
         }
         if (employee) {
           this.deleteQueryEmployee(payload.id)
+          toasts.success()
         }
       } catch (e: any) {
-        toast({
-          title: 'Произошла ошибка',
-          description: e.message,
-          duration: 5000,
-          variant: 'destructive'
-        })
+        toasts.error(e.message)
       }
     },
 
-    async addEmployee(payload: IEmployee): Promise<void> {
+    async addEmployee(payload: IEmployeeWithoutId): Promise<void> {
       try {
         const item = await ProjectsApi.addEmployee(payload)
         if (item) {
           this.addQueryEmployee(item)
+          toasts.success()
         }
       } catch (e: any) {
-        toast({
-          title: 'Произошла ошибка',
-          description: e.message,
-          duration: 5000,
-          variant: 'destructive'
-        })
+        toasts.error(e.message)
       }
     },
 
-    async addProject(payload: IProject): Promise<void> {
+    async addProject(payload: IProjectWithoutId): Promise<void> {
       try {
         const item = await ProjectsApi.addProject(payload)
         if (item) {
           this.addQueryProject(item)
+          toasts.success()
         }
       } catch (e: any) {
-        toast({
-          title: 'Произошла ошибка',
-          description: e.message,
-          duration: 5000,
-          variant: 'destructive'
-        })
+        toasts.error(e.message)
       }
     },
 
@@ -195,14 +178,10 @@ export const useProjectModel = defineStore({
         const item = await ProjectsApi.deleteProject(id)
         if (item) {
           this.deleteQueryProject(id)
+          toasts.success()
         }
       } catch (e: any) {
-        toast({
-          title: 'Произошла ошибка',
-          description: e.message,
-          duration: 5000,
-          variant: 'destructive'
-        })
+        toasts.error(e.message)
       }
     },
 
@@ -251,7 +230,7 @@ export const useProjectModel = defineStore({
       this.employees = this.employees.filter((employee) => employee.id !== id)
     },
 
-    setSelectedProjectItem(item: IProject): void {
+    setSelectedProjectItem(item: IProject | ITreeItem | null): void {
       this.selectedProjectItem = item
     }
   }
