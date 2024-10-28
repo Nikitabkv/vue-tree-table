@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ProjectEditForm from "@/features/ProjectEditForm/ui/ProjectEditForm.vue"
+import ProjectEditForm from "@/widgets/ProjectEditForm"
 import {useProjectModel} from "@/entities/Projects"
 const projectModel = useProjectModel()
 </script>

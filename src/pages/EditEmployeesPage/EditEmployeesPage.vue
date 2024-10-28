@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {useProjectModel} from "@/entities/Projects"
-import EditEmployeesListItem from "@/features/EditEmployeesListItem/ui/EditEmployeesListItem.vue"
-import NewEmployeeForm from "@/features/NewEmployeeForm/ui/NewEmployeeForm.vue"
+import EditEmployeesListItem from "@/features/EditEmployeesListItem"
+import NewEmployeeForm from "@/features/NewEmployeeForm"
 
 const projectModel = useProjectModel()
 
@@ -12,9 +12,10 @@ const projectModel = useProjectModel()
   <div class="wrapper">
     <div class="employees-list">
       <h2>Список всех сотрудников</h2>
-      <div class="list-item" v-for="employee in projectModel.employees">
-        <EditEmployeesListItem :employee="employee"/>
-      </div>
+      <EditEmployeesListItem
+          v-for="employee in projectModel.employees"
+          :employee="employee"
+      />
       <NewEmployeeForm />
     </div>
   </div>

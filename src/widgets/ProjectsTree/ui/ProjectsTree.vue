@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {useProjectModel} from "@/entities/Projects"
-import TreeItem from "@/features/ProjectsTree/TreeItem/ui/TreeItem.vue"
+import TreeItem from "@/features/TreeItem"
 const projectModel = useProjectModel()
 </script>
 

@@ -13,7 +13,6 @@ interface ITreeItem {
 const {setSelectedProjectItem} = useProjectModel()
 
 const item = defineProps<ITreeItem>()
-console.log(item)
 const isOpen = ref(false)
 
 const itemClickHandler = () => {

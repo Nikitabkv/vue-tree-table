@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import ProjectsTree from "@/features/ProjectsTree"
+import ProjectsTree from "@/widgets/ProjectsTree"
 import ProjectTable from "@/features/ProjectTable"
-import AddProjectModal from "@/features/AddProjectModal/ui/AddProjectModal.vue"
+import AddProjectModal from "@/widgets/AddProjectModal"
 import {ref} from "vue"
 
 const addModalIsOpen = ref(false)

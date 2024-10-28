@@ -15,12 +15,19 @@ const newEmployee = ref({
 const addNewEmployee = () => {
   projectModel.addEmployee(newEmployee.value)
   newEmployeeFromIsOpen.value = false
+  newEmployee.value = {
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    days: 0,
+    inProjectsIds: [],
+  }
 }
 
 </script>
 
 <template>
-  <button @click="newEmployeeFromIsOpen = true" class="bg-blue-500 font-medium">
+  <button @click="newEmployeeFromIsOpen = !newEmployeeFromIsOpen" class="bg-blue-500 font-medium">
     Добавить сотрудника
   </button>
   <div v-if="newEmployeeFromIsOpen" class="flex flex-col gap-2">

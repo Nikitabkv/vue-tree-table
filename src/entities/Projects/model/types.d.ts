@@ -2,7 +2,7 @@ export interface IProjectsModel {
   projects: IProject[]
   treeModel: ITreeItem[],
   employees: IEmployee[],
-  selectedProjectItem: any | null
+  selectedProjectItem: IProject | ITreeItem | null
 }
 
 export interface IProject {
