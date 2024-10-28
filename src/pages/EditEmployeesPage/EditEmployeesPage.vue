@@ -27,10 +27,6 @@ const projectModel = useProjectModel()
   flex-direction: column;
   gap: 8px;
 }
-.list-item {
-  display: flex;
-  gap: 16px;
-}
 </style>
 
 
