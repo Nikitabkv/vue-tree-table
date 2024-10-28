@@ -84,7 +84,9 @@
       "id": "d793",
       "title": "Проект 13",
       "parentId": "7",
-      "employeesIds": []
+      "employeesIds": [
+        "91a1"
+      ]
     },
     {
       "id": "6cf1",
@@ -124,7 +126,7 @@
     },
     {
       "id": "afb8",
-      "title": "Проверка",
+      "title": "что-то тестил",
       "parentId": "b900",
       "employeesIds": [
         "1",
@@ -211,7 +213,8 @@
       "lastName": "Сотрудников",
       "days": 5,
       "inProjectsIds": [
-        "afb8"
+        "afb8",
+        "d793"
       ]
     }
   ]

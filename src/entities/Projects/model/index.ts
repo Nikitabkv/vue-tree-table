@@ -113,6 +113,19 @@ export const useProjectModel = defineStore({
       }
     },
 
+    async updateProjectTitle(payload: IProject): Promise<void> {
+      try {
+        const project = await ProjectsApi.updateProject(payload)
+        if (project) {
+          this.updateQueryProject(project)
+          this.treeModel = buildTreeModel(this.projects)
+          toasts.success()
+        }
+      } catch (e: any) {
+        toasts.error(e.message)
+      }
+    },
+
     async updateEmployee(payload: IEmployee): Promise<void> {
       try {
         const employee = await ProjectsApi.updateEmployee(payload)

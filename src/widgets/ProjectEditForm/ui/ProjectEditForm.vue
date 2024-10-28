@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {ref} from "vue"
+import {ref, watch} from "vue"
 import {useRoute} from "vue-router"
 import {useProjectModel} from "@/entities/Projects"
 import {IEmployee} from "@/entities/Projects/model/types"
@@ -29,17 +29,32 @@ const addEmployeeButtonHandler = (employeeId: string) => {
   })
   selectedEmployeeId.value = null
 }
-
 const deleteProjectButtonHandler = () => {
   if (!confirm('Удалить проект?')) return
   projectModel.deleteProject(projectId)
   router.push('/')
 }
+const saveProjectName = () => {
+  const project = projectModel.getProjectById(projectId)
+  if (project) {
+    projectModel.updateProjectTitle(project)
+  }
+}
+
 
 </script>
 
 <template>
   <div class="flexCol">
+    <div v-if="projectModel.getProjectById(projectId)">
+      <label>
+        Изменить название проекта:
+        <input type="text" v-model="(projectModel.getProjectById(projectId) || { title: '' }).title">
+      </label>
+      <button @click="saveProjectName">
+        Сохранить
+      </button>
+    </div>
     <div v-for="employee in projectModel.getEmployeesByProjectId(projectId)" class="flexRow">
       <label>
         Фамилия:
