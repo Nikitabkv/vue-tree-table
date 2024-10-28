@@ -5,7 +5,7 @@ import {
   IProject, IEmployee, ITreeItem, IProjectWithoutId, IEmployeeWithoutId
 } from './types'
 import {buildTreeModel} from "../lib"
-import {useToast} from "../../../shared/ui/toast"
+import {useToast} from "@/shared/ui/toast"
 
 const {toast} = useToast()
 const toasts = {
@@ -107,6 +107,19 @@ export const useProjectModel = defineStore({
             this.updateQueryEmployee(employeeItem)
             toasts.success()
           }
+        }
+      } catch (e: any) {
+        toasts.error(e.message)
+      }
+    },
+
+    async updateProjectTitle(payload: IProject): Promise<void> {
+      try {
+        const project = await ProjectsApi.updateProject(payload)
+        if (project) {
+          this.updateQueryProject(project)
+          this.treeModel = buildTreeModel(this.projects)
+          toasts.success()
         }
       } catch (e: any) {
         toasts.error(e.message)
