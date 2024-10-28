@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {ref} from "vue"
+import {ref, watch} from "vue"
 import {useRoute} from "vue-router"
 import {useProjectModel} from "@/entities/Projects"
 import {IEmployee} from "@/entities/Projects/model/types"
